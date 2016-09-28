@@ -1,0 +1,3271 @@
+<rib-config>
+	<eway name="ewASNInToRMS">
+		<collaboration name="colASNInToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="ASNIn">
+					<storedProc>
+						<signature>{call RMSSUB_ASNIN.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="ASNINCRE">
+						<oracleObject>RIB_ASNINDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ASNINMOD">
+						<oracleObject>RIB_ASNINDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ASNINDEL">
+						<oracleObject>RIB_ASNINREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+        <eway name="ewReceivingToRMS">
+                <collaboration name="colReceivingToRMS">
+                        <adaptorComponent>
+                                <class>com.retek.rib.collab.general.OracleObjectSubscriberRePublisherComponentImpl</class>
+                                <messageFamily name="Receiving">
+                                        <translatorClass>com.retek.rib.pubtrans.OtbObjectTranslator</translatorClass>
+                                        <rePubMessageType>OTBMOD</rePubMessageType>
+                                        <rePubOracleObjectType>RIB_OTBDESC_REC</rePubOracleObjectType>
+                                        <storedProc>
+                                                <signature>{call RMSSUB_RECEIVING.CONSUME(?,?,?,?,?,?)}</signature>
+						<outParameter index="6">
+							<type>
+                                                           <value>ARRAY</value>
+                                                           <name>RIB_ERROR_TBL</name>
+                                                        </type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+						</outParameter>
+                                        </storedProc>
+                                        <messageType name="APPOINTCRE">
+                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+                                        </messageType>
+                                        <messageType name="APPOINTDTLCRE">
+                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+                                        </messageType>
+                                        <messageType name="APPOINTHDRMOD">
+                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+                                        </messageType>
+                                        <messageType name="APPOINTDTLMOD">
+                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+                                        </messageType>
+                                        <messageType name="APPOINTDEL">
+                                                <oracleObject>RIB_APPOINTREF_REC</oracleObject>
+                                        </messageType>
+                                        <messageType name="APPOINTDTLDEL">
+                                                <oracleObject>RIB_APPOINTDTLREF_REC</oracleObject>
+                                        </messageType>
+                                        <messageType name="RECEIPTCRE">
+                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+                                        </messageType>
+                                        <messageType name="RECEIPTMOD">
+                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+                                        </messageType>
+                                </messageFamily>
+                        </adaptorComponent>
+                </collaboration>
+        </eway>
+   <!-- Start RIB Multi-threading of ewReceivingToRMS -->
+			<eway name="ewReceivingToRMS">
+		                <collaboration name="colReceivingToRMS_2">
+		                        <adaptorComponent>
+		                                <class>com.retek.rib.collab.general.OracleObjectSubscriberRePublisherComponentImpl</class>
+		                                <messageFamily name="Receiving">
+		                                        <translatorClass>com.retek.rib.pubtrans.OtbObjectTranslator</translatorClass>
+		                                        <rePubMessageType>OTBMOD</rePubMessageType>
+		                                        <rePubOracleObjectType>RIB_OTBDESC_REC</rePubOracleObjectType>
+		                                        <storedProc>
+		                                                <signature>{call RMSSUB_RECEIVING.CONSUME(?,?,?,?,?,?)}</signature>
+								<outParameter index="6">
+									<type>
+		                                                           <value>ARRAY</value>
+		                                                           <name>RIB_ERROR_TBL</name>
+		                                                        </type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+								</outParameter>
+		                                        </storedProc>
+		                                        <messageType name="APPOINTCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTHDRMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDEL">
+		                                                <oracleObject>RIB_APPOINTREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLDEL">
+		                                                <oracleObject>RIB_APPOINTDTLREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTCRE">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTMOD">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                </messageFamily>
+		                        </adaptorComponent>
+		                </collaboration>
+		        </eway>
+		
+			<eway name="ewReceivingToRMS">
+		                <collaboration name="colReceivingToRMS_3">
+		                        <adaptorComponent>
+		                                <class>com.retek.rib.collab.general.OracleObjectSubscriberRePublisherComponentImpl</class>
+		                                <messageFamily name="Receiving">
+		                                        <translatorClass>com.retek.rib.pubtrans.OtbObjectTranslator</translatorClass>
+		                                        <rePubMessageType>OTBMOD</rePubMessageType>
+		                                        <rePubOracleObjectType>RIB_OTBDESC_REC</rePubOracleObjectType>
+		                                        <storedProc>
+		                                                <signature>{call RMSSUB_RECEIVING.CONSUME(?,?,?,?,?,?)}</signature>
+								<outParameter index="6">
+									<type>
+		                                                           <value>ARRAY</value>
+		                                                           <name>RIB_ERROR_TBL</name>
+		                                                        </type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+								</outParameter>
+		                                        </storedProc>
+		                                        <messageType name="APPOINTCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTHDRMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDEL">
+		                                                <oracleObject>RIB_APPOINTREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLDEL">
+		                                                <oracleObject>RIB_APPOINTDTLREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTCRE">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTMOD">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                </messageFamily>
+		                        </adaptorComponent>
+		                </collaboration>
+		        </eway>
+		
+			<eway name="ewReceivingToRMS">
+		                <collaboration name="colReceivingToRMS_4">
+		                        <adaptorComponent>
+		                                <class>com.retek.rib.collab.general.OracleObjectSubscriberRePublisherComponentImpl</class>
+		                                <messageFamily name="Receiving">
+		                                        <translatorClass>com.retek.rib.pubtrans.OtbObjectTranslator</translatorClass>
+		                                        <rePubMessageType>OTBMOD</rePubMessageType>
+		                                        <rePubOracleObjectType>RIB_OTBDESC_REC</rePubOracleObjectType>
+		                                        <storedProc>
+		                                                <signature>{call RMSSUB_RECEIVING.CONSUME(?,?,?,?,?,?)}</signature>
+								<outParameter index="6">
+									<type>
+		                                                           <value>ARRAY</value>
+		                                                           <name>RIB_ERROR_TBL</name>
+		                                                        </type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+								</outParameter>
+		                                        </storedProc>
+		                                        <messageType name="APPOINTCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTHDRMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDEL">
+		                                                <oracleObject>RIB_APPOINTREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLDEL">
+		                                                <oracleObject>RIB_APPOINTDTLREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTCRE">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTMOD">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                </messageFamily>
+		                        </adaptorComponent>
+		                </collaboration>
+		        </eway>
+		
+			<eway name="ewReceivingToRMS_2">
+		                <collaboration name="colReceivingToRMS_5">
+		                        <adaptorComponent>
+		                                <class>com.retek.rib.collab.general.OracleObjectSubscriberRePublisherComponentImpl</class>
+		                                <messageFamily name="Receiving">
+		                                        <translatorClass>com.retek.rib.pubtrans.OtbObjectTranslator</translatorClass>
+		                                        <rePubMessageType>OTBMOD</rePubMessageType>
+		                                        <rePubOracleObjectType>RIB_OTBDESC_REC</rePubOracleObjectType>
+		                                        <storedProc>
+		                                                <signature>{call RMSSUB_RECEIVING.CONSUME(?,?,?,?,?,?)}</signature>
+								<outParameter index="6">
+									<type>
+		                                                           <value>ARRAY</value>
+		                                                           <name>RIB_ERROR_TBL</name>
+		                                                        </type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+								</outParameter>
+		                                        </storedProc>
+		                                        <messageType name="APPOINTCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTHDRMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDEL">
+		                                                <oracleObject>RIB_APPOINTREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLDEL">
+		                                                <oracleObject>RIB_APPOINTDTLREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTCRE">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTMOD">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                </messageFamily>
+		                        </adaptorComponent>
+		                </collaboration>
+		        </eway>
+		
+			<eway name="ewReceivingToRMS_2">
+		                <collaboration name="colReceivingToRMS_6">
+		                        <adaptorComponent>
+		                                <class>com.retek.rib.collab.general.OracleObjectSubscriberRePublisherComponentImpl</class>
+		                                <messageFamily name="Receiving">
+		                                        <translatorClass>com.retek.rib.pubtrans.OtbObjectTranslator</translatorClass>
+		                                        <rePubMessageType>OTBMOD</rePubMessageType>
+		                                        <rePubOracleObjectType>RIB_OTBDESC_REC</rePubOracleObjectType>
+		                                        <storedProc>
+		                                                <signature>{call RMSSUB_RECEIVING.CONSUME(?,?,?,?,?,?)}</signature>
+								<outParameter index="6">
+									<type>
+		                                                           <value>ARRAY</value>
+		                                                           <name>RIB_ERROR_TBL</name>
+		                                                        </type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+								</outParameter>
+		                                        </storedProc>
+		                                        <messageType name="APPOINTCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTHDRMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDEL">
+		                                                <oracleObject>RIB_APPOINTREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLDEL">
+		                                                <oracleObject>RIB_APPOINTDTLREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTCRE">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTMOD">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                </messageFamily>
+		                        </adaptorComponent>
+		                </collaboration>
+		        </eway>
+		
+			<eway name="ewReceivingToRMS_2">
+		                <collaboration name="colReceivingToRMS_7">
+		                        <adaptorComponent>
+		                                <class>com.retek.rib.collab.general.OracleObjectSubscriberRePublisherComponentImpl</class>
+		                                <messageFamily name="Receiving">
+		                                        <translatorClass>com.retek.rib.pubtrans.OtbObjectTranslator</translatorClass>
+		                                        <rePubMessageType>OTBMOD</rePubMessageType>
+		                                        <rePubOracleObjectType>RIB_OTBDESC_REC</rePubOracleObjectType>
+		                                        <storedProc>
+		                                                <signature>{call RMSSUB_RECEIVING.CONSUME(?,?,?,?,?,?)}</signature>
+								<outParameter index="6">
+									<type>
+		                                                           <value>ARRAY</value>
+		                                                           <name>RIB_ERROR_TBL</name>
+		                                                        </type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+								</outParameter>
+		                                        </storedProc>
+		                                        <messageType name="APPOINTCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTHDRMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDEL">
+		                                                <oracleObject>RIB_APPOINTREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLDEL">
+		                                                <oracleObject>RIB_APPOINTDTLREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTCRE">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTMOD">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                </messageFamily>
+		                        </adaptorComponent>
+		                </collaboration>
+		        </eway>
+		
+			<eway name="ewReceivingToRMS_2">
+		                <collaboration name="colReceivingToRMS_8">
+		                        <adaptorComponent>
+		                                <class>com.retek.rib.collab.general.OracleObjectSubscriberRePublisherComponentImpl</class>
+		                                <messageFamily name="Receiving">
+		                                        <translatorClass>com.retek.rib.pubtrans.OtbObjectTranslator</translatorClass>
+		                                        <rePubMessageType>OTBMOD</rePubMessageType>
+		                                        <rePubOracleObjectType>RIB_OTBDESC_REC</rePubOracleObjectType>
+		                                        <storedProc>
+		                                                <signature>{call RMSSUB_RECEIVING.CONSUME(?,?,?,?,?,?)}</signature>
+								<outParameter index="6">
+									<type>
+		                                                           <value>ARRAY</value>
+		                                                           <name>RIB_ERROR_TBL</name>
+		                                                        </type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+								</outParameter>
+		                                        </storedProc>
+		                                        <messageType name="APPOINTCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLCRE">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTHDRMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLMOD">
+		                                                <oracleObject>RIB_APPOINTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDEL">
+		                                                <oracleObject>RIB_APPOINTREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="APPOINTDTLDEL">
+		                                                <oracleObject>RIB_APPOINTDTLREF_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTCRE">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                        <messageType name="RECEIPTMOD">
+		                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+		                                        </messageType>
+		                                </messageFamily>
+		                        </adaptorComponent>
+		                </collaboration>
+		        </eway>
+		
+        <!-- End RIB Multi-threading of ewReceivingToRMS -->
+	<eway name="ewDSDReceiptToRMS">
+		<collaboration name="colDSDReceiptToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberRePublisherComponentImpl</class>
+				<messageFamily name="DSDReceipt">
+                                        <translatorClass>com.retek.rib.pubtrans.DsddealsObjectTranslator</translatorClass>
+                                        <rePubMessageType>DSDDEALSCRE</rePubMessageType>
+                                        <rePubOracleObjectType>RIB_DSDDEALSDESC_REC</rePubOracleObjectType>
+					<storedProc>
+						<signature>{call RMSSUB_DSD.CONSUME(?,?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="DSDRECEIPTCRE">
+						<oracleObject>RIB_DSDRECEIPTDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="DSDRECEIPTMOD">
+						<oracleObject>RIB_DSDRECEIPTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewDSDDealsToRMS">
+		<collaboration name="colDSDDealsToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentNonXAImpl</class>
+				<messageFamily name="DSDDEALS">
+					<storedProc>
+						<signature>{call RMSSUB_DSDDEALS.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="DSDDEALSCRE">
+						<oracleObject>RIB_DSDDEALSDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewASNOutToRMS">
+		<collaboration name="colASNOutToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="ASNOut">
+					<storedProc>
+						<signature>{call RMSSUB_ASNOUT.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="ASNOUTCRE">
+						<oracleObject>RIB_ASNOUTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<!--21-Jan-2009 Tesco HSC/Usha Patil          MrgNBS010972 Begin -->>
+		<collaboration name="colASNOutToRMS_2">     
+     
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="ASNOut">
+					<storedProc>
+						<signature>{call RMSSUB_ASNOUT.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="ASNOUTCRE">
+						<oracleObject>RIB_ASNOUTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colASNOutToRMS_3">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="ASNOut">
+					<storedProc>
+						<signature>{call RMSSUB_ASNOUT.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="ASNOUTCRE">
+						<oracleObject>RIB_ASNOUTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colASNOutToRMS_4">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="ASNOut">
+					<storedProc>
+						<signature>{call RMSSUB_ASNOUT.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="ASNOUTCRE">
+						<oracleObject>RIB_ASNOUTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	
+	<eway name="ewASNOutToRMS_2">
+		<collaboration name="colASNOutToRMS_5">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="ASNOut">
+					<storedProc>
+						<signature>{call RMSSUB_ASNOUT.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="ASNOUTCRE">
+						<oracleObject>RIB_ASNOUTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colASNOutToRMS_6">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="ASNOut">
+					<storedProc>
+						<signature>{call RMSSUB_ASNOUT.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="ASNOUTCRE">
+						<oracleObject>RIB_ASNOUTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colASNOutToRMS_7">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="ASNOut">
+					<storedProc>
+						<signature>{call RMSSUB_ASNOUT.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="ASNOUTCRE">
+						<oracleObject>RIB_ASNOUTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colASNOutToRMS_8">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="ASNOut">
+					<storedProc>
+						<signature>{call RMSSUB_ASNOUT.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="ASNOUTCRE">
+						<oracleObject>RIB_ASNOUTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<!--21-Jan-2009 Tesco HSC/Usha Patil          MrgNBS010972 End -->>
+	</eway>
+
+	<eway name="ewAllocFromRMS">
+		<collaboration name="colAllocFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Alloc">
+                                        <translatorClass>com.retek.rib.pubtrans.AllocObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ALLOC.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewBannerFromRMS">
+		<collaboration name="colBannerFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.CLOBPublisherComponentImpl</class>
+				<messageFamily name="Banner">
+					<storedProc>
+						<signature>{call RMSMFM_BANNER.GETNXT(?,?,?,?,?,?)}</signature>
+						<outParameter index="5">
+							<type><value>NUMERIC</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+							<toJavaField>ID</toJavaField>
+						</outParameter>
+						<outParameter index="6">
+							<type><value>NUMERIC</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+						</outParameter>
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewCOCogsToRMS">
+		<collaboration name="colCOCogsToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="COCogs">
+					<storedProc>
+						<signature>{call RMSSUB_COGS.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="COGSCRE">
+						<oracleObject>RIB_COGSDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewCOReturnToRMS">
+		<collaboration name="colCOReturnToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="COReturn">
+					<storedProc>
+						<signature>{call RMSSUB_CUSTRETSALE.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="CUSTRETSALECRE">
+						<oracleObject>RIB_CUSTRETSALEDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewCOSaleToRMS">
+		<collaboration name="colCOSaleToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="COSale">
+					<storedProc>
+						<signature>{call RMSSUB_CUSTSALE.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="CUSTSALECRE">
+						<oracleObject>RIB_CUSTSALEDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewCurRateToRMS">
+		<collaboration name="colCurRateToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.CLOBSubscriberComponentImpl</class>
+				<messageFamily name="CurRate">
+					<storedProc>
+						<signature>{call RMSSUB_CURRATECRE.CONSUME(?, ?, ?)}</signature>
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewDSRcptToRMS">
+		<collaboration name="colDSRcptToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="DSRcpt">
+					<storedProc>
+						<signature>{call RMSSUB_DSRCPT.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="DSRCPTCRE">
+						<oracleObject>RIB_DSRCPTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>	
+	
+	<eway name="ewDiffGrpFromRMS">
+		<collaboration name="colDiffGrpFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.CLOBPublisherComponentImpl</class>
+				<messageFamily name="DiffGrp">
+					<storedProc>
+						<signature>{call RMSMFM_DIFFGRP.GETNXT(?,?,?,?,?,?)}</signature>
+						<outParameter index="5">
+							<type><value>VARCHAR</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+							<toJavaField>ID</toJavaField>
+						</outParameter>
+						<outParameter index="6">
+							<type><value>VARCHAR</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+						</outParameter>
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewDiffsFromRMS">
+		<collaboration name="colDiffsFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.CLOBPublisherComponentImpl</class>
+				<messageFamily name="Diffs">
+					<storedProc>
+						<signature>{call RMSMFM_DIFFID.GETNXT(?,?,?,?,?)}</signature>
+						<outParameter index="5">
+							<type><value>VARCHAR</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+							<toJavaField>ID</toJavaField>
+						</outParameter>
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewFrtTermToRMS">
+		<collaboration name="colFrtTermToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.CLOBSubscriberComponentImpl</class>
+				<messageFamily name="FrtTerm">
+					<storedProc>
+						<signature>{call RMSSUB_FRTTERMCRE.CONSUME(?,?,?)}</signature>
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewGLCOAToRMS">
+		<collaboration name="colGLCOAToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.CLOBSubscriberComponentImpl</class>
+				<messageFamily name="GLCOA">
+					<storedProc>
+						<signature>{call RMSSUB_GLCOACRE.CONSUME(?,?,?)}</signature>
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<!-- ewInvAdjustToRMS additonal collaborations -->
+	<eway name="ewInvAdjustToRMS">
+		<collaboration name="colInvAdjustToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="InvAdjust">
+					<storedProc>
+						<signature>{call RMSSUB_INVADJUST.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="INVADJUSTCRE">
+						<oracleObject>RIB_INVADJUSTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<!--21-Jan-2009 Tesco HSC/Usha Patil           MrgNBS010972 Begin -->
+		<collaboration name="colInvAdjustToRMS_2">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="InvAdjust">
+					<storedProc>
+						<signature>{call RMSSUB_INVADJUST.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="INVADJUSTCRE">
+						<oracleObject>RIB_INVADJUSTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colInvAdjustToRMS_3">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="InvAdjust">
+					<storedProc>
+						<signature>{call RMSSUB_INVADJUST.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="INVADJUSTCRE">
+						<oracleObject>RIB_INVADJUSTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colInvAdjustToRMS_4">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="InvAdjust">
+					<storedProc>
+						<signature>{call RMSSUB_INVADJUST.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="INVADJUSTCRE">
+						<oracleObject>RIB_INVADJUSTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<!--21-Jan-2009 Tesco HSC/Usha Patil             MrgNBS010972 End -->
+	</eway>
+	
+    <eway name="ewInvReqToRMS">
+             <collaboration name="colInvReqToRMS">
+                     <adaptorComponent>
+                             <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+                             <messageFamily name="InvReq">
+                                     <storedProc>
+                                              <signature>{call RMSSUB_INVREQ.CONSUME(?,?,?,?,?)}</signature>
+                                                <outParameter index="5">
+                                                        <type>
+                                                           <value>ARRAY</value>
+                                                           <name>RIB_ERROR_TBL</name>
+                                                        </type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+                                                </outParameter>
+                                        </storedProc>
+                                        <messageType name="INVREQCRE">
+                                                <oracleObject>RIB_INVREQDESC_REC</oracleObject>
+                                        </messageType>
+                                </messageFamily>
+                        </adaptorComponent>
+                </collaboration>
+    </eway>
+
+	<eway name="ewItemLocFromRMS">
+		<collaboration name="colItemLocFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="ItemLoc">
+                                       <translatorClass>com.retek.rib.pubtrans.ItemlocObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMLOC.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<!-- Joy Stephen/TESCO HSC DefNBS014742   06-Oct-2009  - Begin -->
+	<eway name="ewItemsFromRMS">
+		<collaboration name="colItemsFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colItemsFromRMS_2">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colItemsFromRMS_3">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colItemsFromRMS_4">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<eway name="ewItemsFromRMS_2">
+		<collaboration name="colItemsFromRMS_5">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colItemsFromRMS_6">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colItemsFromRMS_7">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colItemsFromRMS_8">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<eway name="ewItemsFromRMS_3">
+		<collaboration name="colItemsFromRMS_9">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colItemsFromRMS_10">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colItemsFromRMS_11">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colItemsFromRMS_12">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Items">
+                                        <translatorClass>com.retek.rib.pubtrans.ItemsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ITEMS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+
+	</eway>
+	<!-- Joy Stephen/TESCO HSC DefNBS014742   06-Oct-2009  - End -->
+
+	<eway name="ewMerchHierFromRMS">
+		<collaboration name="colMerchHierFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="MerchHier">
+                                        <translatorClass>com.retek.rib.pubtrans.MerchhierObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_MERCHHIER.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<eway name="ewOTBToRMS">
+		<collaboration name="colOTBToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="OTB">
+					<storedProc>
+						<signature>{call RMSSUB_OTBMOD.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="OTBMOD">
+						<oracleObject>RIB_OTBDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<eway name="ewOrderFromRMS">
+		<collaboration name="colOrderFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Order">
+                                        <translatorClass>com.retek.rib.pubtrans.OrderObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_ORDER.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<eway name="ewPartnerFromRMS">
+		<collaboration name="colPartnerFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="Partner">
+                                        <translatorClass>com.retek.rib.pubtrans.PartnerObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_PARTNER.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>	
+	<eway name="ewPayTermToRMS">
+		<collaboration name="colPayTermToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="PayTerm">
+					<storedProc>
+						<signature>{call RMSSUB_PAYTERM.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="PAYTERMCRE">
+						<oracleObject>RIB_PAYTERMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="PAYTERMMOD">
+						<oracleObject>RIB_PAYTERMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="PAYTERMDTLCRE">
+						<oracleObject>RIB_PAYTERMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="PAYTERMDTLMOD">
+						<oracleObject>RIB_PAYTERMDESC_REC</oracleObject>
+					</messageType>					
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+   <eway name="ewRTVReqFromRMS">
+        <collaboration name="colRTVReqFromRMS">
+           <adaptorComponent>
+              <class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+              <messageFamily name="RTVReq">
+                 <translatorClass>com.retek.rib.pubtrans.RtvreqObjectTranslator</translatorClass>
+                 <storedProc>
+                    <signature>{call RMSMFM_RTVREQ.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+                 </storedProc>
+              </messageFamily>
+           </adaptorComponent>
+        </collaboration>
+   </eway>
+   <eway name="ewRTVToRMS">
+      <collaboration name="colRTVToRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+            <messageFamily name="RTV">
+               <storedProc>
+                  <signature>{call RMSSUB_RTV.CONSUME(?,?,?,?)}</signature>
+               </storedProc>
+               <messageType name="RTVCRE">
+                  <oracleObject>RIB_RTVDESC_REC</oracleObject>
+               </messageType>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewRcvUnitAdjFromRMS">
+      <collaboration name="colRcvUnitAdjFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+            <messageFamily name="RcvUnitAdj">
+               <translatorClass>com.retek.rib.pubtrans.RcvunitadjObjectTranslator</translatorClass>
+               <storedProc>
+                  <signature>{call RMSMFM_RCVUNITADJ.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+               </storedProc>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>   
+   <eway name="ewSOStatusToRMS">
+      <collaboration name="colSOStatusToRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+            <messageFamily name="SOStatus">
+               <storedProc>
+                  <signature>{call RMSSUB_SOSTATUS.CONSUME(?,?,?,?)}</signature>
+               </storedProc>
+               <messageType name="SOSTATUSCRE">
+                  <oracleObject>RIB_SOSTATUSDESC_REC</oracleObject>
+               </messageType>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewSeasonFromRMS">
+      <collaboration name="colSeasonFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+            <messageFamily name="Season">
+               <translatorClass>com.retek.rib.pubtrans.SeasonObjectTranslator</translatorClass>
+               <storedProc>
+                  <signature>{call RMSMFM_SEASON.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+               </storedProc>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewSeedDataFromRMS">
+      <collaboration name="colSeedDataFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.CLOBPublisherComponentImpl</class>
+            <messageFamily name="SeedData">
+               <storedProc>
+                  <signature>{call RMSMFM_SEEDDATA.GETNXT(?,?,?,?,?)}</signature>
+                  <outParameter index="5">
+                     <type><value>VARCHAR</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+                     <toJavaField>ROUTING_INFO.CODE_TYPE</toJavaField>
+                     <toJavaField>ID</toJavaField>
+                  </outParameter>
+
+               </storedProc>
+
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewSeedObjFromRMS">
+      <collaboration name="colSeedObjFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+            <messageFamily name="SeedObj">
+               <translatorClass>com.retek.rib.pubtrans.SeedobjObjectTranslator</translatorClass>
+               <storedProc>
+                  <signature>{call RMSMFM_SEEDOBJ.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+               </storedProc>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>   
+   <eway name="ewStkCountSchToRMS">
+      <collaboration name="colStkCountSchToRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+            <messageFamily name="StkCountSch">
+               <storedProc>
+                  <signature>{call RMSSUB_STAKESCHEDULE.CONSUME(?,?,?,?)}</signature>
+               </storedProc>
+               <messageType name="STKCOUNTSCHCRE">
+                  <oracleObject>RIB_STKCOUNTSCHDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="STKCOUNTSCHMOD">
+                  <oracleObject>RIB_STKCOUNTSCHDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="STKCOUNTSCHDEL">
+                  <oracleObject>RIB_STKCOUNTSCHREF_REC</oracleObject>
+               </messageType>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewStoresFromRMS">
+      <collaboration name="colStoresFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+            <messageFamily name="Stores">
+               <translatorClass>com.retek.rib.pubtrans.StoresObjectTranslator</translatorClass>
+               <storedProc>
+                  <signature>{call RMSMFM_STORE.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+               </storedProc>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewTransfersFromRMS">
+      <collaboration name="colTransfersFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+            <messageFamily name="Transfers">
+               <translatorClass>com.retek.rib.pubtrans.TransfersObjectTranslator</translatorClass>
+               <storedProc>
+                  <signature>{call RMSMFM_TRANSFERS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+               </storedProc>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewUDAsFromRMS">
+      <collaboration name="colUDAsFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.CLOBPublisherComponentImpl</class>
+            <messageFamily name="UDAs">
+               <storedProc>
+                  <signature>{call RMSMFM_UDA.GETNXT(?,?,?,?,?,?,?)}</signature>
+                  <outParameter index="5">
+                     <type><value>VARCHAR</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+                     <toJavaField>ID</toJavaField>
+                  </outParameter>
+                  <outParameter index="6">
+                     <type><value>VARCHAR</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+                  </outParameter>
+                  <outParameter index="7">
+                     <type><value>VARCHAR</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+                     <toJavaField>ROUTING_INFO.DISPLAY_TYPE</toJavaField>
+                  </outParameter>
+
+               </storedProc>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewVendorFromRMS">
+      <collaboration name="colVendorFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.CLOBPublisherComponentImpl</class>
+            <messageFamily name="Vendor">
+               <storedProc>
+                  <signature>{call RMSMFM_SUPPLIER.GETNXT(?,?,?,?,?,?,?)}</signature>
+                  <outParameter index="5">
+                     <type><value>NUMERIC</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+                     <toJavaField>ID</toJavaField>
+                  </outParameter>
+                  <outParameter index="6">
+                     <type><value>NUMERIC</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+                  </outParameter>
+                  <outParameter index="7">
+                     <type><value>VARCHAR</value></type><!--NUMERIC, VARCHAR, INTEGER, FLOAT, DATE-->
+                  </outParameter>
+
+               </storedProc>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>   
+   <eway name="ewVendorToRMS">
+      <collaboration name="colVendorToRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.CLOBSubscriberComponentImpl</class>
+            <messageFamily name="Vendor">
+		    <storedProc>
+		       <signature>{call RMSSUB_VENDORCRE.CONSUME(?,?,?)}</signature>
+		    </storedProc>
+		    <messageType name="VENDORCRE">
+		    </messageType>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewWHFromRMS">
+      <collaboration name="colWHFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+            <messageFamily name="WH">
+               <translatorClass>com.retek.rib.pubtrans.WhObjectTranslator</translatorClass>
+               <storedProc>
+                  <signature>{call RMSMFM_WH.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+               </storedProc>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewWOInFromRMS">
+      <collaboration name="colWOInFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+            <messageFamily name="WOIn">
+               <translatorClass>com.retek.rib.pubtrans.WoinObjectTranslator</translatorClass>
+               <storedProc>
+                  <signature>{call RMSMFM_WOIn.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+               </storedProc>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewWOOutFromRMS">
+      <collaboration name="colWOOutFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+            <messageFamily name="WOOut">
+               <translatorClass>com.retek.rib.pubtrans.WooutObjectTranslator</translatorClass>
+               <storedProc>
+                  <signature>{call RMSMFM_WOOut.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+               </storedProc>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>   
+   <eway name="ewWOStatusToRMS">
+      <collaboration name="colWOStatusToRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+            <messageFamily name="WOStatus">
+               <storedProc>
+                  <signature>{call RMSSUB_WOSTATUS.CONSUME(?,?,?,?)}</signature>
+               </storedProc>
+               <messageType name="WOSTATUSCRE">
+                  <oracleObject>RIB_WOSTATUSDESC_REC</oracleObject>
+               </messageType>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewXAllocToRMS">
+      <collaboration name="colXAllocToRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+            <messageFamily name="XAlloc">
+               <storedProc>
+                  <signature>{call RMSSUB_XALLOC.CONSUME(?,?,?,?)}</signature>
+               </storedProc>
+               <messageType name="XALLOCDTLDEL">
+                  <oracleObject>RIB_XALLOCREF_REC</oracleObject>
+               </messageType>
+               <messageType name="XALLOCDTLMOD">
+                  <oracleObject>RIB_XALLOCDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="XALLOCDTLCRE">
+                  <oracleObject>RIB_XALLOCDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="XALLOCDEL">
+                  <oracleObject>RIB_XALLOCREF_REC</oracleObject>
+               </messageType>
+               <messageType name="XALLOCMOD">
+                  <oracleObject>RIB_XALLOCDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="XALLOCCRE">
+                  <oracleObject>RIB_XALLOCDESC_REC</oracleObject>
+               </messageType>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewXClearanceToRMS">
+      <collaboration name="colXClearanceToRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+            <messageFamily name="XClearance">
+               <storedProc>
+                  <signature>{call RMSSUB_XCLEARANCE.CONSUME(?,?,?,?)}</signature>
+               </storedProc>
+               <messageType name="XCLEARANCEMOD">
+                  <oracleObject>RIB_XCLEARANCEDESC_REC</oracleObject>
+               </messageType>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewXCostChgToRMS">
+      <collaboration name="colXCostChgToRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+            <messageFamily name="XCostChg">
+               <storedProc>
+                  <signature>{call RMSSUB_XCOSTCHG.CONSUME(?,?,?,?)}</signature>
+               </storedProc>
+               <messageType name="XCOSTCHGMOD">
+                  <oracleObject>RIB_XCOSTCHGDESC_REC</oracleObject>
+               </messageType>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewXDiffGrpToRMS">
+      <collaboration name="colXDiffGrpToRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+            <messageFamily name="XDiffGrp">
+               <storedProc>
+                  <signature>{call RMSSUB_XDIFFGRP.CONSUME(?,?,?,?)}</signature>
+               </storedProc>
+               <messageType name="XDIFFGRPMOD">
+                  <oracleObject>RIB_XDIFFGRPDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="XDIFFGRPCRE">
+                  <oracleObject>RIB_XDIFFGRPDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="XDIFFGRPDTLCRE">
+                  <oracleObject>RIB_XDIFFGRPDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="XDIFFGRPDTLMOD">
+                  <oracleObject>RIB_XDIFFGRPDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="XDIFFGRPDEL">
+                  <oracleObject>RIB_XDIFFGRPREF_REC</oracleObject>
+               </messageType>
+               <messageType name="XDIFFGRPDTLDEL">
+                  <oracleObject>RIB_XDIFFGRPREF_REC</oracleObject>
+               </messageType>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+   <eway name="ewXDiffIDToRMS">
+      <collaboration name="colXDiffIDToRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+            <messageFamily name="XDiffID">
+               <storedProc>
+                  <signature>{call RMSSUB_XDIFFID.CONSUME(?,?,?,?)}</signature>
+               </storedProc>
+               <messageType name="XDIFFIDMOD">
+                  <oracleObject>RIB_XDIFFIDDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="XDIFFIDCRE">
+                  <oracleObject>RIB_XDIFFIDDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="XDIFFIDDEL">
+                  <oracleObject>RIB_XDIFFIDREF_REC</oracleObject>
+               </messageType>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>	
+	
+	<eway name="ewXItemLocToRMS">
+		<collaboration name="colXItemLocToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XItemLoc">
+					<storedProc>
+						<signature>{call RMSSUB_XITEMLOC.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XITEMLOCCRE">
+						<oracleObject>RIB_XITEMLOCDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMLOCMOD">
+						<oracleObject>RIB_XITEMLOCDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<eway name="ewXItemRclsToRMS">
+		<collaboration name="colXItemRclsToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XItemRcls">
+					<storedProc>
+						<signature>{call RMSSUB_XITEMRCLS.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XITEMRCLSCRE">
+						<oracleObject>RIB_XITEMRCLSDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMRCLSDEL">
+						<oracleObject>RIB_XITEMRCLSREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMRCLSDTLCRE">
+						<oracleObject>RIB_XITEMRCLSDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMRCLSDTLDEL">
+						<oracleObject>RIB_XITEMRCLSREF_REC</oracleObject>
+					</messageType>					
+					<!--   05-Sep-2008   Kumar/EnablerWipro DefNBS008917   - Begin -->
+          <!--   19-Jun-2008   Vijaya Bhaskar/EnablerWipro ModN132   - Begin -->
+          <messageType name="TSLXITEMRCLSMOD">
+            <oracleObject>RIB_XITEMRCLSDESC_REC</oracleObject>
+          </messageType>
+          <messageType name="TSLXITEMRCLSDTLMOD">
+            <oracleObject>RIB_XITEMRCLSDESC_REC</oracleObject>
+          </messageType>
+          <!--   19-Jun-2008   Vijaya Bhaskar/EnablerWipro ModN132   - End -->
+          <!--   05-Sep-2008   Kumar/EnablerWipro DefNBS008917   - End -->
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>		
+	<eway name="ewXItemToRMS">
+		<collaboration name="colXItemToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XItem">
+					<storedProc>
+						<signature>{call RMSSUB_XITEM.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XITEMBOMMOD">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMBOMCRE">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMCRE">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMDEL">
+						<oracleObject>RIB_XITEMREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMMOD">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMSUPCRE">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMSUPCTYCRE">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMSUPCTYDEL">
+						<oracleObject>RIB_XITEMREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMSUPCTYMOD">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMSUPDEL">
+						<oracleObject>RIB_XITEMREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMSUPMOD">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XISCLOCMOD">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XISCLOCCRE">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XIZPCRE">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMVATCRE">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XISCLOCDEL">
+						<oracleObject>RIB_XITEMREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMVATDEL">
+						<oracleObject>RIB_XITEMREF_REC</oracleObject>
+					</messageType>					
+					<messageType name="XITEMATTRCRE">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XITEMATTRMOD">
+						<oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+                                        <messageType name="TSLXIBASECRE">
+					        <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXIBASEMOD">
+					        <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+                                        <messageType name="TSLXIBASEDEL">
+					        <oracleObject>RIB_XITEMREF_REC</oracleObject>
+					</messageType>	
+					<messageType name="TSLXISELCRE">
+					       <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXISELMOD">
+					       <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXISELDEL">
+					       <oracleObject>RIB_XITEMREF_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXIEPISELCRE">
+					       <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXIEPISELMOD">
+					       <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXIEPISELDEL">
+					       <oracleObject>RIB_XITEMREF_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXIISSCRE">
+					       <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXIISSMOD">
+					       <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXIISSDEL">
+					       <oracleObject>RIB_XITEMREF_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXIPACKCRE">
+					       <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXIPACKMOD">
+					       <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXIPACKDEL">
+					       <oracleObject>RIB_XITEMREF_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXITILLCRE">
+					       <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXITILLMOD">
+					       <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="TSLXITILLDEL">
+					       <oracleObject>RIB_XITEMREF_REC</oracleObject>
+					</messageType>
+          <!--13-May-2008     TESCO HSC Vijaya Bhaskar/Wipro-Enabler        Mod:N127    Begin-->
+          <messageType name="TSLXIRANGECRE">
+                 <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+          </messageType>
+          <messageType name="TSLXIRANGEMOD">
+                 <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+          </messageType>
+          <messageType name="TSLXIRANGEDEL">
+                 <oracleObject>RIB_XITEMREF_REC</oracleObject>
+          </messageType>
+          <!--13-May-2008     TESCO HSC Vijaya Bhaskar/Wipro-Enabler        Mod:N127    End-->
+      <!-- Vinod Kumar/Tesco HSC ModN111 16-Jun-2008  - Begin-->    
+      <messageType name="TSLXITMSUPMCRE">
+             <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+      </messageType>
+      <messageType name="TSLXITMSUPMMOD">
+             <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+      </messageType>             
+      <messageType name="TSLXITMSUPMDEL">
+             <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+      </messageType> 
+      <messageType name="TSLXISCDIMCRE">
+             <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+      </messageType>          
+      <messageType name="TSLXISCDIMMOD">
+             <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+      </messageType>          
+      <messageType name="TSLXISCDIMDEL">
+             <oracleObject>RIB_XITEMREF_REC</oracleObject>
+      </messageType> 
+      <messageType name="TSLXITEMUPCCRE">
+             <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+      </messageType> 
+      <messageType name="TSLXITEMUPCMOD">
+             <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+      </messageType>                
+      <!-- Vinod Kumar/Tesco HSC ModN111 16-Jun-2008  - End-->   
+      <!-- Vinod Kumar/Tesco HSC ModCR218 27-Jul-2008 - Begin-->   
+      <messageType name="TSLXITEMEXPCRE">
+             <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+      </messageType>      
+      <messageType name="TSLXITEMEXPMOD">
+             <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+      </messageType>  
+      <messageType name="TSLXITEMEXPDEL">
+             <oracleObject>RIB_XITEMDESC_REC</oracleObject>
+      </messageType>                   
+      <!-- Vinod Kumar/Tesco HSC ModCR218 27-Jul-2008 - End-->   
+               
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<eway name="ewXLocTrtToRMS">
+		<collaboration name="colXLocTrtToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XLocTrt">
+					<storedProc>
+						<signature>{call RMSSUB_XLOCTRT.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XLOCTRTDEL">
+						<oracleObject>RIB_XLOCTRTREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XLOCTRTMOD">
+						<oracleObject>RIB_XLOCTRTDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XLOCTRTCRE">
+						<oracleObject>RIB_XLOCTRTDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<eway name="ewXMrchHrRclsToRMS">
+		<collaboration name="colXMrchHrRclsToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XMrchHrRcls">
+					<storedProc>
+						<signature>{call RMSSUB_XMRCHHRRCLS.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XMRCHHRRCLSDEL">
+						<oracleObject>RIB_XMRCHHRRCLSREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRRCLSMOD">
+						<oracleObject>RIB_XMRCHHRRCLSDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRRCLSCRE">
+						<oracleObject>RIB_XMRCHHRRCLSDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>	
+	<eway name="ewXMrchHrToRMS">
+		<collaboration name="colXMrchHrToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XMrchHr">
+					<storedProc>
+						<signature>{call RMSSUB_XMRCHHR.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XMRCHHRCLSCRE">
+						<oracleObject>RIB_XMRCHHRCLSDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRDEPTDEL">
+						<oracleObject>RIB_XMRCHHRDEPTREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRDEPTMOD">
+						<oracleObject>RIB_XMRCHHRDEPTDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRDEPTCRE">
+						<oracleObject>RIB_XMRCHHRDEPTDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRSCLSDEL">
+						<oracleObject>RIB_XMRCHHRSCLSREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRGRPDEL">
+						<oracleObject>RIB_XMRCHHRGRPREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRSCLSMOD">
+						<oracleObject>RIB_XMRCHHRSCLSDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRGRPMOD">
+						<oracleObject>RIB_XMRCHHRGRPDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRSCLSCRE">
+						<oracleObject>RIB_XMRCHHRSCLSDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRGRPCRE">
+						<oracleObject>RIB_XMRCHHRGRPDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRCLSDEL">
+						<oracleObject>RIB_XMRCHHRCLSREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRDIVDEL">
+						<oracleObject>RIB_XMRCHHRDIVREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRCLSMOD">
+						<oracleObject>RIB_XMRCHHRCLSDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRDIVMOD">
+						<oracleObject>RIB_XMRCHHRDIVDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRDIVCRE">
+						<oracleObject>RIB_XMRCHHRDIVDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRCOMPCRE">
+						<oracleObject>RIB_XMRCHHRCOMPDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRCOMPMOD">
+						<oracleObject>RIB_XMRCHHRCOMPDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRVATCRE">
+						<oracleObject>RIB_XMRCHHRDEPTDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XMRCHHRVATMOD">
+						<oracleObject>RIB_XMRCHHRDEPTDESC_REC</oracleObject>
+					</messageType>					
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+    <eway name="ewXOrderToRMS">
+		<collaboration name="colXOrderToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XOrder">
+					<storedProc>
+						<signature>{call RMSSUB_XORDER.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XORDERDTLCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<!--21-Jan-2009 Tesco HSC/Usha Patil           MrgNBS010972 Begin -->
+		<collaboration name="colXOrderToRMS_2">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XOrder">
+					<storedProc>
+						<signature>{call RMSSUB_XORDER.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XORDERDTLCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colXOrderToRMS_3">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XOrder">
+					<storedProc>
+						<signature>{call RMSSUB_XORDER.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XORDERDTLCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colXOrderToRMS_4">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XOrder">
+					<storedProc>
+						<signature>{call RMSSUB_XORDER.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XORDERDTLCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>	
+    	<eway name="ewXOrderToRMS_2">
+		<collaboration name="colXOrderToRMS_5">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XOrder">
+					<storedProc>
+						<signature>{call RMSSUB_XORDER.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XORDERDTLCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colXOrderToRMS_6">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XOrder">
+					<storedProc>
+						<signature>{call RMSSUB_XORDER.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XORDERDTLCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colXOrderToRMS_7">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XOrder">
+					<storedProc>
+						<signature>{call RMSSUB_XORDER.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XORDERDTLCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<collaboration name="colXOrderToRMS_8">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XOrder">
+					<storedProc>
+						<signature>{call RMSSUB_XORDER.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XORDERDTLCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDTLDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERCRE">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERMOD">
+						<oracleObject>RIB_XORDERDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORDERDEL">
+						<oracleObject>RIB_XORDERREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+		<!--21-Jan-2009 Tesco HSC/Usha Patil          MrgNBS010972 End -->
+	</eway>	
+	<eway name="ewXOrgHrToRMS">
+		<collaboration name="colXOrgHrToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XOrgHr">
+					<storedProc>
+						<signature>{call RMSSUB_XORGHR.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XORGHRCRE">
+						<oracleObject>RIB_XORGHRDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORGHRMOD">
+						<oracleObject>RIB_XORGHRDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORGHRDEL">
+						<oracleObject>RIB_XORGHRREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XORGHRLOCTRTCRE">
+						<oracleObject>RIB_XORGHRDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XORGHRLOCTRTDEL">
+						<oracleObject>RIB_XORGHRREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<eway name="ewXPriceChgToRMS">
+		<collaboration name="colXPriceChgToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XPriceChg">
+					<storedProc>
+						<signature>{call RMSSUB_XPRICECHG.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XPRICECHGMOD">
+						<oracleObject>RIB_XPRICECHGDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<eway name="ewXStoreToRMS">
+		<collaboration name="colXStoreToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XStore">
+					<storedProc>
+						<signature>{call RMSSUB_XSTORE.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XSTOREDEL">
+						<oracleObject>RIB_XSTOREREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XSTOREWTCRE">
+						<oracleObject>RIB_XSTOREDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XSTORELOCTRTCRE">
+						<oracleObject>RIB_XSTOREDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XSTOREMOD">
+						<oracleObject>RIB_XSTOREDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XSTORECRE">
+						<oracleObject>RIB_XSTOREDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XSTORELOCTRTDEL">
+						<oracleObject>RIB_XSTOREREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XSTOREWTDEL">
+						<oracleObject>RIB_XSTOREREF_REC</oracleObject>
+					</messageType>					
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	<eway name="ewXTransferToRMS">
+		<collaboration name="colXTransferToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="XTransfer">
+					<storedProc>
+						<signature>{call RMSSUB_XTSF.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="XTSFCRE">
+						<oracleObject>RIB_XTSFDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XTSFMOD">
+						<oracleObject>RIB_XTSFDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XTSFDTLMOD">
+						<oracleObject>RIB_XTSFDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="XTSFDEL">
+						<oracleObject>RIB_XTSFREF_REC</oracleObject>
+					</messageType>
+					<messageType name="XTSFDTLDEL">
+						<oracleObject>RIB_XTSFREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewRegPrcChgToRMS">
+		<collaboration name="colRegPrcChgToRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="RegPrcChg">
+					<storedProc>
+						<signature>{call RMSSUB_REGPRCCHG_TKT.CONSUME(?,?,?,?)}</signature>
+					</storedProc>
+					<messageType name="REGPRCCHGCRE">
+						<oracleObject>RIB_REGPRCCHGDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="REGPRCCHGMOD">
+						<oracleObject>RIB_REGPRCCHGDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="REGPRCCHGDEL">
+						<oracleObject>RIB_REGPRCCHGREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+<!-- RDM 10.3.5 EWAY CONFIG -->
+	<eway name="ewASNInFromRDMWH1">
+		<collaboration name="colASNInFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="asnin">
+                    <translatorClass>com.retek.rib.pubtrans.AsninObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_ASNIN.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewASNInToRDMWH1">
+		<collaboration name="colASNInToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="asnin">
+					<storedProc>
+						<signature>{call RDMSUB_ASNIN.CONSUME(?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+					</storedProc>
+					<messageType name="ASNINCRE">
+						<oracleObject>RIB_ASNINDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ASNINMOD">
+						<oracleObject>RIB_ASNINDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ASNINDEL">
+						<oracleObject>RIB_ASNINREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+		
+	<eway name="ewASNOutFromRDMWH1">
+		<collaboration name="colASNOutFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="asnout">
+                    <translatorClass>com.retek.rib.pubtrans.AsnoutObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_ASNOUT.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewCustReturnFromRDMWH1">
+		<collaboration name="colCustReturnFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="custreturn">
+                    <translatorClass>com.retek.rib.pubtrans.CustreturnObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_CUSTRETURN.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+				
+	<eway name="ewDiffGrpToRDMWH1">
+		<collaboration name="colDiffGrpToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="DiffGrp">
+					<storedProc>
+						<signature>{call RDMSUB_DIFFGRP.CONSUME(?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+					</storedProc>
+					<messageType name="DIFFGRPDEL">
+						<oracleObject>RIB_DIFFGRPREF_REC</oracleObject>
+					</messageType>
+					<messageType name="DIFFGRPDTLCRE">
+						<oracleObject>RIB_DIFFGRPDTLDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="DIFFGRPDTLDEL">
+						<oracleObject>RIB_DIFFGRPDTLREF_REC</oracleObject>
+					</messageType>
+					<messageType name="DIFFGRPHDRCRE">
+						<oracleObject>RIB_DIFFGRPHDRDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="DIFFGRPDTLMOD">
+						<oracleObject>RIB_DIFFGRPDTLDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="DIFFGRPHDRMOD">
+						<oracleObject>RIB_DIFFGRPHDRDESC_REC</oracleObject>
+					</messageType>					
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewDiffsToRDMWH1">
+		<collaboration name="colDiffsToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="diffs">
+					<storedProc>
+						<signature>{call RDMSUB_DIFFS.CONSUME(?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+					</storedProc>
+					<messageType name="DIFFCRE">
+						<oracleObject>RIB_DIFFDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="DIFFMOD">
+						<oracleObject>RIB_DIFFDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="DIFFDEL">
+						<oracleObject>RIB_DIFFREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewInvAdjustFromRDMWH1">
+		<collaboration name="colInvAdjustFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="invadjust">
+                    <translatorClass>com.retek.rib.pubtrans.InvadjustObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_INVADJUST.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+		
+	<eway name="ewItemWHFromRDMWH1">
+		<collaboration name="colItemWHFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="itemwh">
+                    <translatorClass>com.retek.rib.pubtrans.ItemwhObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_ITEMWH.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewItemsToRDMWH1">
+		<collaboration name="colItemsToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="items">
+					<storedProc>
+						<signature>{call RDMSUB_ITEMS.CONSUME(?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+					</storedProc>
+					<messageType name="ITEMCRE">
+						<oracleObject>RIB_ITEMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMHDRMOD">
+						<oracleObject>RIB_ITEMHDRDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMDEL">
+						<oracleObject>RIB_ITEMREF_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMSUPCRE">
+						<oracleObject>RIB_ITEMSUPDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMSUPMOD">
+						<oracleObject>RIB_ITEMSUPDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMSUPDEL">
+						<oracleObject>RIB_ITEMSUPREF_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMSUPCTYCRE">
+						<oracleObject>RIB_ITEMSUPCTYDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMSUPCTYMOD">
+						<oracleObject>RIB_ITEMSUPCTYDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMSUPCTYDEL">
+						<oracleObject>RIB_ITEMSUPCTYREF_REC</oracleObject>
+					</messageType>
+					<messageType name="ISCDIMCRE">
+						<oracleObject>RIB_ISCDIMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ISCDIMMOD">
+						<oracleObject>RIB_ISCDIMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ISCDIMDEL">
+						<oracleObject>RIB_ISCDIMREF_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMUDALOVCRE">
+						<oracleObject>RIB_ITEMUDALOVDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMUDALOVMOD">
+						<oracleObject>RIB_ITEMUDALOVDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMUDALOVDEL">
+						<oracleObject>RIB_ITEMUDALOVREF_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMUPCCRE">
+						<oracleObject>RIB_ITEMUPCDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMUPCMOD">
+						<oracleObject>RIB_ITEMUPCDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMUPCDEL">
+						<oracleObject>RIB_ITEMUPCREF_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMBOMCRE">
+						<oracleObject>RIB_ITEMBOMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMBOMMOD">
+						<oracleObject>RIB_ITEMBOMDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="ITEMBOMDEL">
+						<oracleObject>RIB_ITEMBOMREF_REC</oracleObject>
+					</messageType>														
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewLocationsToRDMWH1">
+		<collaboration name="colLocationsToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="loc">
+					<storedProc>
+						<signature>{call RDMSUB_LOC.CONSUME(?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+					</storedProc>
+					<messageType name="LOCATIONCRE">
+						<oracleObject>RIB_LOCATIONDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="LOCATIONMOD">
+						<oracleObject>RIB_LOCATIONDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="LOCATIONDEL">
+						<oracleObject>RIB_LOCATIONREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewOrderToRDMWH1">
+		<collaboration name="colOrderToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="order">
+					<storedProc>
+						<signature>{call RDMSUB_ORDER.CONSUME(?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>
+					</storedProc>
+					<messageType name="POCRE">
+						<oracleObject>RIB_PODESC_REC</oracleObject>
+					</messageType>
+					<messageType name="PODTLCRE">
+						<oracleObject>RIB_PODESC_REC</oracleObject>
+					</messageType>
+					<messageType name="POHDRMOD">
+						<oracleObject>RIB_PODESC_REC</oracleObject>
+					</messageType>
+					<messageType name="PODTLMOD">
+						<oracleObject>RIB_PODESC_REC</oracleObject>
+					</messageType>
+					<messageType name="PODEL">
+						<oracleObject>RIB_POREF_REC</oracleObject>
+					</messageType>
+					<messageType name="PODTLDEL">
+						<oracleObject>RIB_POREF_REC</oracleObject>
+					</messageType>					
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewPendReturnToRDMWH1">
+		<collaboration name="colPendReturnToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="pendreturn">
+					<storedProc>
+						<signature>{call RDMSUB_PENDRETURN.CONSUME(?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+					</storedProc>
+					<messageType name="PENDRETCRE">
+						<oracleObject>RIB_PENDRTRNDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="PENDRETDTLCRE">
+						<oracleObject>RIB_PENDRTRNDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="PENDRETDTLMOD">
+						<oracleObject>RIB_PENDRTRNDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="PENDRETDEL">
+						<oracleObject>RIB_PENDRTRNREF_REC</oracleObject>
+					</messageType>
+					<messageType name="PENDRETDTLDEL">
+						<oracleObject>RIB_PENDRTRNDTLREF_REC</oracleObject>
+					</messageType>					
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewRTVFromRDMWH1">
+		<collaboration name="colRTVFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="rtv">
+                    <translatorClass>com.retek.rib.pubtrans.RtvObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_RTV.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewReceivingFromRDMWH1">
+		<collaboration name="colReceivingFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="receiving">
+                    <translatorClass>com.retek.rib.pubtrans.ReceivingObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_RECEIVING.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewSKUOptmToRDMWH1">
+		<collaboration name="colSKUOptmToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="skuoptm">
+					<storedProc>
+						<signature>{call RDMSUB_SKUOPTM.CONSUME(?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+					</storedProc>
+					<messageType name="SKUOPTMCRE">
+						<oracleObject>RIB_SKUOPTMDESC_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewSOStatusFromRDMWH1">
+		<collaboration name="colSOStatusFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="sostatus">
+                    <translatorClass>com.retek.rib.pubtrans.SostatusObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_SOSTATUS.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>	
+		
+	<eway name="ewSpaceLocsFromRDMWH1">
+		<collaboration name="colSpaceLocsFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="spacelocs">
+                    <translatorClass>com.retek.rib.pubtrans.SpacelocsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_SPACELOCS.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>	
+	
+	<eway name="ewStockOrderToRDMWH1">
+		<collaboration name="colStockOrderToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="stockorder">
+					<storedProc>
+						<signature>{call RDMSUB_SO.CONSUME(?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+					</storedProc>
+					<messageType name="SOCRE">
+						<oracleObject>RIB_SODESC_REC</oracleObject>
+					</messageType>
+					<messageType name="SODTLCRE">
+						<oracleObject>RIB_SODESC_REC</oracleObject>
+					</messageType>
+					<messageType name="SOHDRMOD">
+						<oracleObject>RIB_SODESC_REC</oracleObject>
+					</messageType>
+					<messageType name="SODTLMOD">
+						<oracleObject>RIB_SODESC_REC</oracleObject>
+					</messageType>
+					<messageType name="SOHDRDEL">
+						<oracleObject>RIB_SOREF_REC</oracleObject>
+					</messageType>
+					<messageType name="SODTLDEL">
+						<oracleObject>RIB_SOREF_REC</oracleObject>
+					</messageType>														
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>	
+	
+	<eway name="ewUDAsToRDMWH1">
+		<collaboration name="colUDAsToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="udas">
+					<storedProc>
+						<signature>{call RDMSUB_UDAS.CONSUME(?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+					</storedProc>
+					<messageType name="UDAHDRCRE">
+						<oracleObject>RIB_UDADESC_REC</oracleObject>
+					</messageType>
+					<messageType name="UDAHDRMOD">
+						<oracleObject>RIB_UDADESC_REC</oracleObject>
+					</messageType>
+					<messageType name="UDAHDRDEL">
+						<oracleObject>RIB_UDAREF_REC</oracleObject>
+					</messageType>
+					<messageType name="UDAVALCRE">
+						<oracleObject>RIB_UDAVALDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="UDAVALMOD">
+						<oracleObject>RIB_UDAVALDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="UDAVALDEL">
+						<oracleObject>RIB_UDAVALREF_REC</oracleObject>
+					</messageType>														
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>		
+	
+	<eway name="ewVendorToRDMWH1">
+		<collaboration name="colVendorToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="vendor">
+					<storedProc>
+						<signature>{call RDMSUB_VENDOR.CONSUME(?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+					</storedProc>
+					<messageType name="VENDORCRE">
+						<oracleObject>RIB_VENDORDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="VENDORHDRMOD">
+						<oracleObject>RIB_VENDORDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="VENDORDEL">
+						<oracleObject>RIB_VENDORREF_REC</oracleObject>
+					</messageType>
+					<messageType name="VENDORADDRCRE">
+						<oracleObject>RIB_VENDORADDRDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="VENDORADDRMOD">
+						<oracleObject>RIB_VENDORADDRDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="VENDORADDRDEL">
+						<oracleObject>RIB_VENDORADDRREF_REC</oracleObject>
+					</messageType>														
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+			
+	<eway name="ewWHEquipClassFromRDMWH1">
+		<collaboration name="colWHEquipClassFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="whequipclass">
+                    <translatorClass>com.retek.rib.pubtrans.WhequipclsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_WHEQUIPCLS.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>	
+				
+	<eway name="ewWHEquipFromRDMWH1">
+		<collaboration name="colWHEquipFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="whequip">
+                    <translatorClass>com.retek.rib.pubtrans.WhequipObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_WHEQUIP.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>	
+					
+	<eway name="ewWHSpaceLocsFromRDMWH1">
+		<collaboration name="colWHSpaceLocsFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="whspacelocs">
+                    <translatorClass>com.retek.rib.pubtrans.WhspacelocsObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_WHSPACELOCS.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>	
+						
+	<eway name="ewWHSpaceLocsFromRDMWH1">
+		<collaboration name="colWHSpaceLocsFromRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="whspacelocs">
+                    <translatorClass>com.retek.rib.pubtrans.WhtransObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RDMMFM_WHTRANS.GETNXT(?,?,?,?,?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>						
+					</storedProc>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>	
+	
+	<eway name="ewWOInToRDMWH1">
+		<collaboration name="colWOInToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="woin">
+					<storedProc>
+						<signature>{call RDMSUB_WOIN.CONSUME(?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>
+					</storedProc>
+					<messageType name="INBDWOCRE">
+						<oracleObject>RIB_WOINDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="INBDWOMOD">
+						<oracleObject>RIB_WOINDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="INBDWODEL">
+						<oracleObject>RIB_WOINREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+				
+	<eway name="ewWOOutToRDMWH1">
+		<collaboration name="colWOOutToRDMWH1">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+				<messageFamily name="woout">
+					<storedProc>
+						<signature>{call RDMSUB_WOOUT.CONSUME(?,?,?,?,?,?)}</signature>
+						<useFacilityType>true</useFacilityType>
+						<useDCDestID>true</useDCDestID>
+					</storedProc>
+					<messageType name="OUTBDWOCRE">
+						<oracleObject>RIB_WOOUTDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="OUTBDWOMOD">
+						<oracleObject>RIB_WOOUTDESC_REC</oracleObject>
+					</messageType>
+					<messageType name="OUTBDWODEL">
+						<oracleObject>RIB_WOOUTREF_REC</oracleObject>
+					</messageType>
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+
+	<eway name="ewDistGrpFromRMS">
+		<collaboration name="colDistGrpFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="tsldistgrp">
+                                        <translatorClass>com.retek.rib.pubtrans.TsldistgrpObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_TSLDISTGRP.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	</eway>
+	
+	<eway name="ewSuppChnAttrFromRMS">
+			<collaboration name="colSuppChnAttrFromRMS">
+			<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+			
+			<collaboration name="colSuppChnAttrFromRMS_2">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+			
+			<collaboration name="colSuppChnAttrFromRMS_3">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+			
+			<collaboration name="colSuppChnAttrFromRMS_4">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+			
+	</eway>	
+	<eway name="ewSuppChnAttrFromRMS_2">
+			<collaboration name="colSuppChnAttrFromRMS_5">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+			
+			<collaboration name="colSuppChnAttrFromRMS_6">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+			
+			<collaboration name="colSuppChnAttrFromRMS_7">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+			
+			<collaboration name="colSuppChnAttrFromRMS_8">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+			
+	</eway>	
+	<eway name="ewSuppChnAttrFromRMS_3">
+			<collaboration name="colSuppChnAttrFromRMS_9">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+			
+			<collaboration name="colSuppChnAttrFromRMS_10">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+			
+			<collaboration name="colSuppChnAttrFromRMS_11">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+			
+			<collaboration name="colSuppChnAttrFromRMS_12">
+
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+					<messageFamily name="suppchnattr">
+	                                        <translatorClass>com.retek.rib.pubtrans.SuppchnattrObjectTranslator</translatorClass>
+						<storedProc>
+							<signature>{call RMSMFM_TSLSUPPCHNATTR.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+						</storedProc>		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+	</eway>
+	
+	<eway name="ewTSLXSupCostChgToRMS">
+			<collaboration name="colTSLXSupCostChgToRMS">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+					<messageFamily name="tslxsupcostchg">
+						<storedProc>
+							<signature>{call RMSSUB_TSLXSUPCOSTCHG.CONSUME(?,?,?,?)}</signature>
+							</storedProc>
+						<messageType name="SUPCOSTCHGCRE">
+							<oracleObject>RIB_TSLXSUPCOSTCHGDESC_REC</oracleObject>
+						</messageType>
+						<messageType name="EDISUPCOSTCHGCRE">
+							<oracleObject>RIB_TSLXSUPCOSTCHGDESC_REC</oracleObject>
+							</messageType>						
+                           <!-- kumar/EnablerWipro ModN111 26-Jun-2008  - Begin -->
+                  <messageType name="SUPCOSTCHGMOD">
+                     <oracleObject>RIB_TSLXSUPCOSTCHGDESC_REC</oracleObject>
+                  </messageType>
+                  <!-- kumar/EnablerWipro ModN111 26-Jun-2008  - End -->
+						</messageFamily>
+					</adaptorComponent>
+				</collaboration>
+	</eway>
+	
+	<eway name="ewXDistGrpToRMS">
+				<collaboration name="colXDistGrpToRMS">
+					<adaptorComponent>
+						<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+						<messageFamily name="xtsldistgrp">
+							<storedProc>
+								<signature>{call RMSSUB_TSLXDISTGRP.CONSUME(?,?,?,?)}</signature>
+							</storedProc>
+							<messageType name="XDISTGRPCRE">
+								<oracleObject>RIB_TSLXDISTGRPDESC_REC</oracleObject>
+							</messageType>
+							<messageType name="XDISTGRPMOD">
+								<oracleObject>RIB_TSLXDISTGRPDESC_REC</oracleObject>
+							</messageType>
+							<messageType name="XDISTGRPDEL">
+								<oracleObject>RIB_TSLXDISTGRPREF_REC</oracleObject>
+							</messageType>
+							<messageType name="XDISTGRPDTLCRE">
+								<oracleObject>RIB_TSLXDISTGRPDTLDESC_REC</oracleObject>
+							</messageType>
+							<messageType name="XDISTGRPDTLDEL">
+							        <oracleObject>RIB_TSLXDISTGRPDTLREF_REC</oracleObject>
+							</messageType>
+						</messageFamily>
+					</adaptorComponent>
+				</collaboration>
+	</eway>
+	
+	
+	<!-- Nandini Mariyappa, Nandini.Mariyappa@in.tesco.com CR162 20-Oct-2008 Begin-->
+	<eway name="ewXSuppChnAttrToRMS">
+	
+			<collaboration name="colXSuppChnAttrToRMS">
+				<adaptorComponent>
+					<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+					<messageFamily name="xsuppchnattr">
+						<storedProc>
+							<signature>{call RMSSUB_TSLXSUPPCHNATTR.CONSUME(?,?,?,?)}</signature>
+							</storedProc>
+						<messageType name="XSCACRE">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+						</messageType>
+						<messageType name="XSCADEL">
+							<oracleObject>RIB_TSLXSCAREF_REC</oracleObject>
+						</messageType>
+						<messageType name="XSCAITEMDISTTYPECRE">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+						</messageType>						
+					  <messageType name="XSCAWHORDGRPCRE">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+						</messageType>
+						<messageType name="XSCAWHORDGRPDEL">
+							<oracleObject>RIB_TSLXSCAREF_REC</oracleObject>
+						</messageType>	
+						<messageType name="XSCAWHDISTGRPCRE">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>
+					  <messageType name="XSCAWHDISTGRPDEL">
+							<oracleObject>RIB_TSLXSCAREF_REC</oracleObject>
+					  </messageType>
+					  <messageType name="XSCADIRDISTGRPCRE">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>
+					  <messageType name="XSCADIRDISTGRPDEL">
+							<oracleObject>RIB_TSLXSCAREF_REC</oracleObject>
+					  </messageType>
+					  <messageType name="XSCADIRORDGRPCRE">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>
+					  <messageType name="XSCADIRORDGRPDEL">
+							<oracleObject>RIB_TSLXSCAREF_REC</oracleObject>
+					  </messageType>		
+					  <messageType name="XSCAWHORDPREFPACKCRE">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>
+					  <messageType name="XSCAWHORDPREFPACKDEL">
+							<oracleObject>RIB_TSLXSCAREF_REC</oracleObject>
+						</messageType>
+						<!-- Adding New Message Types as per the CR162-->
+						<!-- Nandini Mariyappa, Nandini.Mariyappa@in.tesco.com DefNBS010514 16-Dec-2008 Begin-->
+						<messageType name="XSCADIRDISTPACKCRE">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>
+					  <messageType name="XSCADIRDISTPACKMOD">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>
+            <messageType name="XSCADIRDISTPACKDEL">
+							<oracleObject>RIB_TSLXSCAREF_REC</oracleObject>
+					  </messageType>
+					  <!-- Nandini Mariyappa, Nandini.Mariyappa@in.tesco.com DefNBS010514 16-Dec-2008 End-->
+					  <messageType name="XSCAWHORDERINDCRE">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>					        
+					  <messageType name="XSCAWHORDERINDDEL">
+							<oracleObject>RIB_TSLXSCAREF_REC</oracleObject>
+					  </messageType>
+					  <!-- Adding New Message Types as per the CR162-->
+						<!-- Nandini Mariyappa, Nandini.Mariyappa@in.tesco.com DefNBS010785 12-Jan-2009 Begin-->
+						<messageType name="XSCAPREFPACKCRE">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>					        
+					  <messageType name="XSCAPREFPACKDEL">
+							<oracleObject>RIB_TSLXSCAREF_REC</oracleObject>
+					  </messageType>
+						<!-- Nandini Mariyappa, Nandini.Mariyappa@in.tesco.com DefNBS010785 12-Jan-2009 End-->
+						
+						<!-- Nandini Mariyappa, Nandini.Mariyappa@in.tesco.com MrgNBS013573 22-Jun-2009 Begin-->
+						<!-- Nandini Mariyappa, Nandini.Mariyappa@in.tesco.com CR196 16-Mar-2009 Begin-->
+						<messageType name="XSCAMOD">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+						</messageType>
+						<!-- Nandini Mariyappa, Nandini.Mariyappa@in.tesco.com MrgNBS013573 22-Jun-2009 End-->
+						
+						<!--Commented Mod Message Types As per the CR162 requirements-->
+						<!--<messageType name="XSCAITEMDISTTYPEMOD">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+						</messageType>
+						<messageType name="XSCAWHORDGRPMOD">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+						</messageType>
+						<messageType name="XSCAWHDISTGRPMOD">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>
+					  <messageType name="XSCADIRDISTGRPMOD">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>
+					  <messageType name="XSCADIRORDGRPMOD">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>
+					  <messageType name="XSCAWHORDPREFPACKMOD">
+							<oracleObject>RIB_TSLXSCADESC_REC</oracleObject>
+					  </messageType>	-->		
+					</messageFamily>
+				</adaptorComponent>
+			</collaboration>
+	</eway>
+	<!-- Nandini Mariyappa, Nandini.Mariyappa@in.tesco.com CR162 20-Oct-2008 End-->
+		
+<!-- kumar/EnablerWipro ModN32 8-Feb-2008  - Begin -->        	
+	 <eway name="ewTSLSuppGrpFromRMS">
+		<collaboration name="colTSLSuppGrpFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="tslsuppgrp">
+          <translatorClass>com.retek.rib.pubtrans.TslsuppgrpObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_TSLSUPPGRP.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	 </eway>
+<!-- kumar/EnablerWipro ModN32 8-Feb-2008  - End -->        
+
+<!-- kumar/EnablerWipro ModN32 8-Feb-2008  - Begin -->        
+	 <eway name="ewTSLXSuppGrpToRMS">
+				<collaboration name="colTSLXSuppGrpToRMS">
+					<adaptorComponent>
+						<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+						<messageFamily name="tslxsuppgrp">
+							<storedProc>
+								<signature>{call RMSSUB_TSLXSUPPGRP.CONSUME(?,?,?,?)}</signature>
+							</storedProc>
+							<messageType name="XSUPPGRPCRE">
+								<oracleObject>RIB_TSLXSUPPGRPDESC_REC</oracleObject>
+							</messageType>
+							<messageType name="XSUPPGRPMOD">
+								<oracleObject>RIB_TSLXSUPPGRPDESC_REC</oracleObject>
+							</messageType>
+							<messageType name="XSUPPGRPDEL">
+								<oracleObject>RIB_TSLXSUPPGRPREF_REC</oracleObject>
+							</messageType>
+							<messageType name="XSUPPGRPDTLCRE">
+								<oracleObject>RIB_TSLXSUPPGRPDTLDESC_REC</oracleObject>
+							</messageType>
+							<messageType name="XSUPPGRPDTLDEL">
+							        <oracleObject>RIB_TSLXSUPPGRPDTLREF_REC</oracleObject>
+							</messageType>
+						</messageFamily>
+					</adaptorComponent>
+				</collaboration>
+	 </eway>
+<!-- kumar/EnablerWipro ModN32 8-Feb-2008  - End -->        
+
+<!-- kumar/EnablerWipro ModN32 11-Feb-2008  - Begin -->        	
+	 <eway name="ewTSLSuppHierFromRMS">
+		<collaboration name="colTSLSuppHierFromRMS">
+			<adaptorComponent>
+				<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+				<messageFamily name="tslsupphier">
+          <translatorClass>com.retek.rib.pubtrans.TslsupphierObjectTranslator</translatorClass>
+					<storedProc>
+						<signature>{call RMSMFM_TSLSUPPHIER.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+					</storedProc>		
+				</messageFamily>
+			</adaptorComponent>
+		</collaboration>
+	 </eway>
+<!-- kumar/EnablerWipro ModN32 11-Feb-2008  - End -->     
+
+<!-- kumar/EnablerWipro ModN32 13-Feb-2008  - Begin -->        
+	 <eway name="ewTSLXSuppHierToRMS">
+				<collaboration name="colTSLXSuppHierToRMS">
+					<adaptorComponent>
+						<class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+						<messageFamily name="tslxsuppgrp">
+							<storedProc>
+								<signature>{call RMSSUB_TSLXSUPPHIER.CONSUME(?,?,?,?)}</signature>
+							</storedProc>
+							<messageType name="XSUPPHIERNODECRE">
+								<oracleObject>RIB_TSLXSUPPHIERNODEDESC_REC</oracleObject>
+							</messageType>
+							<messageType name="XSUPPHIERNODEMOD">
+								<oracleObject>RIB_TSLXSUPPHIERNODEDESC_REC</oracleObject>
+							</messageType>
+							<messageType name="XSUPPHIERNODEDEL">
+								<oracleObject>RIB_TSLXSUPPHIERNODEREF_REC</oracleObject>
+							</messageType>
+						</messageFamily>
+					</adaptorComponent>
+				</collaboration>
+	 </eway>
+<!-- kumar/EnablerWipro ModN32 13-Feb-2008  - End -->        
+	
+<!-- Nandini Mariyappa, Nandini.Mariyappa@in.tesco.com ModN111 22-May-2008 Begin-->
+  <eway name="ewTslDealsFromRMS">
+         <collaboration name="colTslDealsFromRMS">
+            <adaptorComponent>
+               <class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+               <messageFamily name="tsldeals">
+             <translatorClass>com.retek.rib.pubtrans.TslDealsObjectTranslator</translatorClass>
+                  <storedProc>
+                     <signature>{call RMSMFM_TSLDEALS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+                  </storedProc>     
+               </messageFamily>
+            </adaptorComponent>
+         </collaboration>
+   </eway>
+   <!--21-Jan-2009 Tesco HSC/Usha Patil        MrgNBS010972 Begin -->
+   <!-- Mod Ref: Changed the topic name including eway            -->
+   <eway name="ewTSLXDealsToRMS">
+            <collaboration name="colTSLXDealsToRMS">
+               <adaptorComponent>
+                  <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+                  <messageFamily name="tsldeals">
+                     <storedProc>
+                        <signature>{call RMSSUB_TSLXDEALS.CONSUME(?,?,?,?)}</signature>
+                     </storedProc>
+                     <messageType name="TSLXDEALHDRCRE">
+                        <oracleObject>RIB_TSLXDEALDESC_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDEALHDRMOD">
+                        <oracleObject>RIB_TSLXDEALDESC_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDEALDTLCRE">
+                        <oracleObject>RIB_TSLXDEALDESC_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDEALDTLMOD">
+                        <oracleObject>RIB_TSLXDEALDESC_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDEALILOCCRE">
+                       <oracleObject>RIB_TSLXDEALDESC_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDEALILOCMOD">
+                       <oracleObject>RIB_TSLXDEALDESC_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDEALILOCDEL">
+                       <oracleObject>RIB_TSLXDEALREF_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDTHRESHCRE">
+                       <oracleObject>RIB_TSLXDEALDESC_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDTHRESHMOD">
+                       <oracleObject>RIB_TSLXDEALDESC_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDTHRESHDEL">
+                       <oracleObject>RIB_TSLXDEALREF_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDACTFRCSTCRE">
+                       <oracleObject>RIB_TSLXDEALDESC_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDACTFRCSTMOD">
+                       <oracleObject>RIB_TSLXDEALDESC_REC</oracleObject>
+                     </messageType>
+                     <messageType name="TSLXDACTFRCSTDEL">
+                       <oracleObject>RIB_TSLXDEALREF_REC</oracleObject>
+                     </messageType>
+                  </messageFamily>
+               </adaptorComponent>
+            </collaboration>
+   </eway>
+<!--21-Jan-2009 Tesco HSC/Usha Patil        MrgNBS010972 End -->
+<!-- Nandini Mariyappa, Nandini.Mariyappa@in.tesco.com ModN111 22-May-2008 End-->
+
+<!-- kumar/EnablerWipro ModN111 26-Jun-2008  - Begin -->
+    <eway name="ewTSLCostChgFromRMS">
+      <collaboration name="colTSLCostChgFromRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+            <messageFamily name="tslcostchg">
+          <translatorClass>com.retek.rib.pubtrans.TslCostChgObjectTranslator</translatorClass>
+               <storedProc>
+                  <signature>{call RMSMFM_TSLCOSTCHG.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+               </storedProc>     
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+    </eway>
+
+<!-- kumar/EnablerWipro ModN111 26-Jun-2008  - End -->     
+
+<!--   10-Jun-2008   Tesco HSC/Usha Patil ModN132   Begin-->
+  <eway name="ewTSLItemRclsFromRMS">
+  			<collaboration name="colTSLItemRclsFromRMS">
+  				<adaptorComponent>
+  					<class>com.retek.rib.collab.general.OracleObjectPublisherComponentImpl</class>
+  					<messageFamily name="tslitemrcls">
+  	          <translatorClass>com.retek.rib.pubtrans.TslItemRclsObjectTranslator</translatorClass>
+  						<storedProc>
+  							<signature>{call RMSMFM_TSLITEMRCLS.GETNXT(?,?,?,?,?,?,?,?)}</signature>
+  						</storedProc>		
+  					</messageFamily>
+  				</adaptorComponent>
+  			</collaboration>
+  	</eway>
+<!--   10-Jun-2008   Tesco HSC/Usha Patil ModN132   End-->
+<!--07-Jul-2008   TESCO HSC Vijaya Bhaskar/Wipro-Enabler   Mod:N153   Begin-->
+   <eway name="ewXTslRngeEvtToRMS">
+      <collaboration name="colXTslRngeEvtToRMS">
+         <adaptorComponent>
+            <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+            <messageFamily name="xtslrngeevt">
+               <storedProc>
+                  <signature>{call RMSSUB_TSLXRNGEEVT.CONSUME(?,?,?,?)}</signature>
+               </storedProc>
+               <messageType name="XRNGEEVTCRE">
+                  <oracleObject>RIB_TSLXRNGEEVTDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="XRNGEEVTMOD">
+                  <oracleObject>RIB_TSLXRNGEEVTDESC_REC</oracleObject>
+               </messageType>
+               <messageType name="XRNGEEVTDEL">
+                  <oracleObject>RIB_TSLXRNGEEVTREF_REC</oracleObject>
+               </messageType>
+            </messageFamily>
+         </adaptorComponent>
+      </collaboration>
+   </eway>
+<!--13-Jul-2008   TESCO HSC Vijaya Bhaskar/Wipro-Enabler   Mod:N153   End-->
+<!-- Chandru/Tesco Hsc ModN148 06-Apr-2009  - Begin -->
+    <!-- Usha Patil, usha.patil@in.tesco.com Def14779 26-Nov-2009 Begin -->
+       <!-- Removed the entry for ewTSLMULocFromRMS as it is no longer required. -->
+    <!-- Usha Patil, usha.patil@in.tesco.com Def14779 26-Nov-2009 End -->
+<!-- Chandru/Tesco Hsc ModN148 06-Apr-2009  - End -->
+
+<!--   12-Jul-2010 Phil Noon, phil.noon@uk@tesco.com ChrNBSC0282a Begin-->
+        <eway name="ewTSLXFuelRcptToRMS">
+                <collaboration name="colTSLXFuelRcptToRMS">
+                        <adaptorComponent>
+                                <class>com.retek.rib.collab.general.OracleObjectSubscriberComponentImpl</class>
+                                <messageFamily name="tslxfuel">
+                                        <storedProc>
+                                                <signature>{call RMSSUB_TSLXFUELRCPT.CONSUME(?,?,?,?)}</signature>
+                                        </storedProc>
+                                        <messageType name="RECEIPTCRE">
+                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+                                        </messageType>
+                                        <messageType name="RECEIPTMOD">
+                                                <oracleObject>RIB_RECEIPTDESC_REC</oracleObject>
+                                        </messageType>
+                                </messageFamily>
+                        </adaptorComponent>
+                </collaboration>
+        </eway>
+<!--   12-Jul-2010 Phil Noon, phil.noon@uk@tesco.com ChrNBSC0282a End-->
+</rib-config>
